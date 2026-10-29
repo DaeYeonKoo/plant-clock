@@ -11,6 +11,10 @@
   :root { --panel:#FFFFFF; --ink:#0E2240; --muted:#5E7393; --line:#D5E2F1; --navy:#0B2A55; --navy-ink:#FFFFFF; --navy-muted:#A9C4E6; }
   html, body { margin:0; background:transparent; font-family:"Pretendard","Segoe UI","Malgun Gothic",sans-serif; color:var(--ink); }
   .wrap { display:grid; gap:10px; padding:0; }
+  /* view=clock: 카드가 웹 개체 높이를 꽉 채움 — 개체가 카드보다 크면 아래가 투명(흰색)으로 보이던 문제 */
+  html.v-clock, html.v-clock body, html.v-clock .wrap { height:100%; }
+  html.v-clock .clk { box-sizing:border-box; height:100%; display:flex; flex-direction:column; }
+  html.v-clock .clk .ds { margin-top:auto; }
   .rc { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 14px; }
   .rc h3 { margin:0 0 8px; font-size:12.5px; color:var(--muted); font-weight:600; display:flex; justify-content:space-between; align-items:baseline; }
   .rc h3 small { font-weight:400; font-size:11px; }
@@ -40,6 +44,7 @@
   const q = new URLSearchParams(location.search), view = q.get('view') || 'all', asof = q.get('asof');
   if (view === 'zones') document.getElementById('cardClock').remove();
   if (view === 'clock') document.getElementById('cardZones').remove();
+  document.documentElement.classList.add('v-' + view);
   if (!asof && document.getElementById('ds')) document.getElementById('ds').remove();
   const parts = (tz, now) => Object.fromEntries(new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', minute: '2-digit', second: '2-digit',
     hour12: false, year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(now).map(x => [x.type, x.value]));
