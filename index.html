@@ -15,6 +15,10 @@
   html.v-clock, html.v-clock body, html.v-clock .wrap { height:100%; }
   html.v-clock .clk { box-sizing:border-box; height:100%; display:flex; flex-direction:column; }
   html.v-clock .clk .ds { margin-top:auto; }
+  /* view=zones: 공장별 현지 시각 카드도 높이를 꽉 채우고, 행은 위아래로 고르게 */
+  html.v-zones, html.v-zones body, html.v-zones .wrap { height:100%; }
+  html.v-zones #cardZones { box-sizing:border-box; height:100%; display:flex; flex-direction:column; }
+  html.v-zones .wz { flex:1; align-content:space-between; }
   .rc { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 14px; }
   .rc h3 { margin:0 0 8px; font-size:12.5px; color:var(--muted); font-weight:600; display:flex; justify-content:space-between; align-items:baseline; }
   .rc h3 small { font-weight:400; font-size:11px; }
